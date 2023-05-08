@@ -1,0 +1,188 @@
+/* Login */
+.login {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.left-login {
+  display: flex;
+  /* flex: 0.6; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.left-login > h3 {
+  color: #47ac4a;
+  /* font-family: "Josefin Sans", sans-serif; */
+  font-size: 45px;
+  /* padding-bottom: 50px; */
+  font-family: "Roboto", sans-serif;
+}
+
+.loginForm > div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.loginForm > div > input {
+  padding: 1vmax 4vmax;
+  margin: 5px 0px;
+  padding-right: 1vmax;
+  width: 500px;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.267);
+  border-radius: 4px;
+  font-weight: 300;
+  font-size: 16px;
+  outline: none;
+  background-color: #fafffd;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.loginForm > div > svg {
+  position: absolute;
+  transform: translateX(1vmax);
+  font-size: 1.6vmax;
+  color: rgba(0, 0, 0, 0.623);
+}
+
+.loginBtn {
+  margin-top: 3rem;
+  border: none;
+  background-color: #47ac4a;
+  color: white;
+  font: 300 0.9vmax "Roboto";
+  width: 100%;
+  padding: 0.8vmax;
+  cursor: pointer;
+  transition: all 0.5s;
+  border-radius: 50px;
+  outline: none;
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.219);
+  /* font-family: "Josefin Sans", sans-serif; */
+  font-size: 20px;
+}
+
+.loginBtn:hover {
+  /* background-color: #275c29; */
+  transform: translateY(-5px);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.219);
+}
+
+@media (max-width: 574px) {
+  /* Login */
+
+  .login {
+    height: 70vh;
+  }
+
+  .left-login > h3 {
+    color: #47ac4a;
+    /* font-family: "Josefin Sans", sans-serif; */
+    font-size: 28px;
+    text-align: center;
+    /* padding-bottom: 10px; */
+    margin: 30px auto;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .loginForm > div {
+    display: flex;
+    width: 90vw;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .loginForm > div > input {
+    padding: 1.8vmax 6vmax;
+    margin: 5px auto;
+    padding-right: 1vmax;
+    width: 90vw;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    border-radius: 4px;
+    font-weight: 300;
+    font-size: 16px;
+    outline: none;
+    background-color: #fafffd;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  .loginForm > div > svg {
+    position: absolute;
+    transform: translateX(1vmax);
+    font-size: 3.5vmax;
+    color: rgba(0, 0, 0, 0.623);
+    padding-left: 5px;
+  }
+
+  .loginBtn {
+    margin-top: 2rem;
+    border: none;
+    background-color: #47ac4a;
+    color: white;
+    font: 300 0.9vmax "Roboto";
+    width: 100%;
+    padding: 1.2vmax;
+    cursor: pointer;
+    transition: all 0.5s;
+    border-radius: 50px;
+    outline: none;
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.219);
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 20px;
+  }
+
+  .loginBtn:hover {
+    /* background-color: #275c29; */
+    transform: translateY(-5px);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.219);
+  }
+
+  .right-login > h2 {
+    color: white;
+    /* font-family: "Josefin Sans", sans-serif; */
+    font-size: 40px;
+    padding-bottom: 30px;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .right-login > p {
+    color: whitesmoke;
+    /* font-family: "Josefin Sans", sans-serif; */
+    font-size: 18px;
+    line-height: 10px;
+    padding-bottom: 20px;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .login > .right-login .RegBt {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    width: 60%;
+    cursor: pointer;
+    border-radius: 50px;
+    height: 50px;
+    transition: all 0.5s;
+  }
+
+  .login > .right-login .RegBt:hover {
+    background-color: whitesmoke;
+    color: #47ac4a;
+    font-size: 17px;
+  }
+
+  .blank {
+    display: none;
+  }
+}
