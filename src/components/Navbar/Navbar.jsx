@@ -16,7 +16,7 @@ import {
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { ConnectWallet } from "@thirdweb-dev/react";
+import { ConnectWallet, useAddress, useBalance } from "@thirdweb-dev/react";
 import NavLink from "./NavLink";
 import NavButtons from "./NavButtons";
 import NavLinkDropdown from "./NavLinkDropdown";
@@ -35,6 +35,7 @@ const Links = [
 
 export default function Navbar({ isLoggedIn, handleLogout }) {
   const navigate = useNavigate();
+  const userAddress = useAddress();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -50,6 +51,21 @@ export default function Navbar({ isLoggedIn, handleLogout }) {
         });
     } catch (e) {
       console.log(e.message);
+    }
+  };
+
+  // function to signup user:
+  const handleWalletSubmit = async () => {
+    try {
+      await axios.post(
+        "https://wild-blue-barnacle-sock.cyclic.app/api/wallet/createWallet",
+        {
+          userAddress,
+          userAddress,
+        }
+      );
+    } catch (error) {
+      console.log("catch error: ", error.message);
     }
   };
 
@@ -96,6 +112,7 @@ export default function Navbar({ isLoggedIn, handleLogout }) {
             ) : (
               <>
                 <ConnectWallet
+                  onClick={handleWalletSubmit}
                   accentColor="#f213a4"
                   colorMode="dark"
                   width={{ base: "150px", md: "unset" }}
