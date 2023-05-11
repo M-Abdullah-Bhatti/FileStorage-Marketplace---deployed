@@ -25,6 +25,7 @@ export default function Signup() {
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState(null);
 
   // function to signup user:
   const handleSignupSubmit = async () => {
@@ -33,6 +34,7 @@ export default function Signup() {
         .post("https://wild-blue-barnacle-sock.cyclic.app/api/user/signup", {
           username,
           email,
+          phone,
           password,
         })
         .then((result) => {
@@ -97,6 +99,17 @@ export default function Signup() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </FormControl>
+
+            <FormControl id="number" isRequired>
+              <FormLabel>Phone no</FormLabel>
+              <Input
+                type="number"
+                name="phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+            </FormControl>
+
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>

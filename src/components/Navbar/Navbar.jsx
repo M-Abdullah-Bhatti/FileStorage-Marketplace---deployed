@@ -83,7 +83,8 @@ export default function Navbar({ isLoggedIn, handleLogout }) {
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
-              <NavLinkDropdown />
+              {isLoggedIn && <NavLinkDropdown />}
+
               {Links.map((data) => (
                 <NavLink key={data.linkUrl} data={data} />
               ))}
@@ -126,7 +127,7 @@ export default function Navbar({ isLoggedIn, handleLogout }) {
 
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
-            <NavLinkDropdown />
+            {isLoggedIn && <NavLinkDropdown />}
             <Stack as={"nav"} spacing={4}>
               {Links.map((data) => (
                 <NavLink key={data.linkUrl} data={data} />
