@@ -12,6 +12,7 @@ import {
   useDisclosure,
   Box,
   Text,
+  useClipboard,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import FileStorageMarketplace from "../../FileStorageMarketplace.json";
@@ -22,12 +23,18 @@ import Pagination from "../../components/Pagination/Pagination";
 import Loader from "../../components/Loader/Loader";
 import axios from "axios";
 
+import { BsFillClipboardFill } from "react-icons/bs";
+
 import { useNavigate } from "react-router-dom";
 
 const AllUploadedFiles = () => {
+  const [currentPrivateKey, setCurrentPrivateKey] = useState("");
+  const { onCopy, value, setValue, hasCopied } =
+    useClipboard(currentPrivateKey);
   const navigate = useNavigate();
   const [account, setAccount] = useState(null);
   const [files, setFiles] = useState([]);
+
   const [
     totalFilesCountSharedAndUploaded,
     setTotalFilesCountSharedAndUploaded,
@@ -53,6 +60,13 @@ const AllUploadedFiles = () => {
     onOpen();
   };
 
+  const handleCopy = async (privateKey) => {
+    onCopy();
+    console.log(privateKey);
+    setCurrentPrivateKey(privateKey);
+    // openModal();
+  };
+
   const click = async (hash) => {
     let encryptor = new JSEncrypt({ default_key_size: 2048 });
 
@@ -66,8 +80,8 @@ const AllUploadedFiles = () => {
     encryptor.setPrivateKey(data.privateKey);
     let decrypted = encryptor.decrypt(hash);
     window.open(`https://gateway.pinata.cloud/ipfs/${decrypted}`, "_blank");
-    // navigate(`/see/${decrypted}`);
   };
+
   useEffect(() => {
     const fetchAllMyUploadedFiles = async () => {
       // Connect to the contract using ethers.js
@@ -90,25 +104,40 @@ const AllUploadedFiles = () => {
       });
 
       // Call the getAllMyUploadedFiles() function and retrieve the files
-      const files = await contract.getAllMyUploadedFiles();
-      const filesCountUploadedFiles = files.length;
+      const uploadedFiles = await contract.getAllMyUploadedFiles();
+      const filesCountUploadedFiles = uploadedFiles.length;
 
-      const SharedFiles = await contract.getAllMySharedFiles();
-      const filesCountSharedFiles = SharedFiles.length;
+      const filesWithPrivateKeys = await Promise.all(
+        uploadedFiles.map(async (element) => {
+          let encryptor = new JSEncrypt({ default_key_size: 2048 });
+
+          const { data } = await axios.post(
+            "https://wild-blue-barnacle-sock.cyclic.app/api/hash/getPrivateKey",
+            {
+              hashvalue: element.hash,
+            }
+          );
+          return {
+            ...element,
+            privateKey: data.privateKey,
+          };
+        })
+      );
+
+      const sharedFiles = await contract.getAllMySharedFiles();
+      const filesCountSharedFiles = sharedFiles.length;
 
       const totalFilesCountSharedAndUploaded =
         Number(filesCountUploadedFiles) + Number(filesCountSharedFiles);
       setTotalFilesCountSharedAndUploaded(totalFilesCountSharedAndUploaded);
 
       // Set the files state variable
-      setFiles(files);
+      setFiles(filesWithPrivateKeys);
       setLoading(false);
-
-      //----------------------------testing:
     };
 
     fetchAllMyUploadedFiles();
-  }, [account, totalFilesCountSharedAndUploaded]);
+  }, []);
 
   return (
     <>
@@ -152,6 +181,7 @@ const AllUploadedFiles = () => {
                   File Name
                 </Th>
                 <Th fontSize="xl">File Hash</Th>
+                <Th fontSize="xl">Private Key</Th>
                 <Th fontSize="xl">File Price</Th>
                 <Th fontSize="xl">Action</Th>
               </Tr>
@@ -187,6 +217,15 @@ const AllUploadedFiles = () => {
                             data.hash.slice(-20)}{" "}
                           <ExternalLinkIcon mx="2px" />
                         </Link>
+                      </Td>
+
+                      {/* privateKey */}
+
+                      <Td>
+                        {data.privateKey.slice(33, 60) + "..."}
+                        <button onClick={() => handleCopy(data.privateKey)}>
+                          <BsFillClipboardFill style={{ fontSize: "20px" }} />
+                        </button>
                       </Td>
 
                       <Td>{`${ethers.utils.formatEther(data.price)} ETH`}</Td>
