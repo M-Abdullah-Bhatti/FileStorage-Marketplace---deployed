@@ -10,7 +10,7 @@ import {
   Textarea,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { create } from "ipfs-http-client";
 import JSEncrypt from "jsencrypt";
@@ -22,6 +22,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
+import { useAddress } from "@thirdweb-dev/react";
 
 const projectId = "2NeEZqOeOOi9fQgDL6VoIMwKIZY";
 const projectSecret = "b4ae65044a6e29c52c4091bf29a976b2";
@@ -39,6 +40,7 @@ const ipfs = create({
 });
 
 export default function UploadFile() {
+  const address = useAddress();
   const navigate = useNavigate();
   let encryptor = new JSEncrypt({ default_key_size: 2048 });
   let encryptedHash;
@@ -46,6 +48,9 @@ export default function UploadFile() {
   let publicKey, privatekey;
 
   const [selectedFile, setSelectedFile] = useState();
+  const [userBalance, setUserBalance] = useState("");
+  const [walletAddress, setWalletAddress] = useState("");
+
   const [fileInfo, setFileInfo] = useState({
     name: "",
     description: "",
@@ -85,19 +90,59 @@ export default function UploadFile() {
       );
       await tx.wait();
 
-      await axios
-        .post("https://wild-blue-barnacle-sock.cyclic.app/api/hash", {
+      const createFile = await axios
+        .post("https://wild-blue-barnacle-sock.cyclic.app/api/hash/create", {
           hashvalue: encryptedHash,
           privatekey: privatekey,
+          name: fileInfo.name,
+          description: fileInfo.description,
         })
         .then((res) => {
+          // console.log(res);
           toast.success("File Uploaded Successfully");
           navigate("/myalluploadedfiles");
-        });
+        })
+        .catch((err) => console.log(err));
+
+      // add user wallet api here:
+      const createWallet = await axios
+        .post(
+          "https://wild-blue-barnacle-sock.cyclic.app/api/wallet/createWallet",
+          {
+            userAddress: address,
+            userBalance: userBalance,
+          }
+        )
+        .then((res) => {
+          // console.log(res);
+        })
+        .catch((err) => console.log(err.response.data.message));
     } catch (error) {
       toast.error(error.message);
     }
   };
+  useEffect(() => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+
+    signer
+      .getAddress()
+      .then((userAddress) => {
+        setWalletAddress(userAddress);
+        provider
+          .getBalance(userAddress)
+          .then((balance) => {
+            const formattedBalance = ethers.utils.formatEther(balance);
+            setUserBalance(formattedBalance);
+          })
+          .catch((error) => {
+            console.error("Error fetching balance:", error);
+          });
+      })
+      .catch((error) => {
+        console.error("Error fetching user address:", error);
+      });
+  }, []);
 
   return (
     <Flex
