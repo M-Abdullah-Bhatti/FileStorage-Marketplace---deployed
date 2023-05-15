@@ -1,11 +1,7 @@
 {
-  "address": "0x465C27760726D8F7a932516Bebf366A4Ff3Ba982",
+  "address": "0xdEee7DF2BADC6687F65cDE7D53375eb817217944",
   "abi": [
-    {
-      "inputs": [],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
+    { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" },
     {
       "anonymous": false,
       "inputs": [
@@ -174,124 +170,51 @@
       "name": "FileUploaded",
       "type": "event"
     },
-    {
-      "stateMutability": "payable",
-      "type": "fallback"
-    },
+    { "stateMutability": "payable", "type": "fallback" },
     {
       "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_fileId",
-          "type": "uint256"
-        }
+        { "internalType": "uint256", "name": "_fileId", "type": "uint256" }
       ],
       "name": "buyFile",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
+      "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
       "stateMutability": "payable",
       "type": "function"
     },
     {
       "inputs": [],
       "name": "contractOwner",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
+      "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
       "stateMutability": "view",
       "type": "function"
     },
     {
       "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_fileId",
-          "type": "uint256"
-        }
+        { "internalType": "uint256", "name": "_fileId", "type": "uint256" }
       ],
       "name": "deleteFile",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
+      "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
       "stateMutability": "nonpayable",
       "type": "function"
     },
     {
       "inputs": [],
       "name": "fileCount",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
+      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
       "stateMutability": "view",
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
+      "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
       "name": "files",
       "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "fileId",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "owner",
-          "type": "address"
-        },
-        {
-          "internalType": "string",
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "description",
-          "type": "string"
-        },
-        {
-          "internalType": "address",
-          "name": "sharedWith",
-          "type": "address"
-        },
-        {
-          "internalType": "bool",
-          "name": "isForSale",
-          "type": "bool"
-        },
-        {
-          "internalType": "uint256",
-          "name": "price",
-          "type": "uint256"
-        },
-        {
-          "internalType": "string",
-          "name": "hash",
-          "type": "string"
-        }
+        { "internalType": "uint256", "name": "fileId", "type": "uint256" },
+        { "internalType": "address", "name": "owner", "type": "address" },
+        { "internalType": "string", "name": "name", "type": "string" },
+        { "internalType": "string", "name": "description", "type": "string" },
+        { "internalType": "address", "name": "sharedWith", "type": "address" },
+        { "internalType": "bool", "name": "isForSale", "type": "bool" },
+        { "internalType": "uint256", "name": "price", "type": "uint256" },
+        { "internalType": "string", "name": "hash", "type": "string" }
       ],
       "stateMutability": "view",
       "type": "function"
@@ -302,21 +225,9 @@
       "outputs": [
         {
           "components": [
-            {
-              "internalType": "uint256",
-              "name": "fileId",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "owner",
-              "type": "address"
-            },
-            {
-              "internalType": "string",
-              "name": "name",
-              "type": "string"
-            },
+            { "internalType": "uint256", "name": "fileId", "type": "uint256" },
+            { "internalType": "address", "name": "owner", "type": "address" },
+            { "internalType": "string", "name": "name", "type": "string" },
             {
               "internalType": "string",
               "name": "description",
@@ -327,21 +238,9 @@
               "name": "sharedWith",
               "type": "address"
             },
-            {
-              "internalType": "bool",
-              "name": "isForSale",
-              "type": "bool"
-            },
-            {
-              "internalType": "uint256",
-              "name": "price",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "hash",
-              "type": "string"
-            }
+            { "internalType": "bool", "name": "isForSale", "type": "bool" },
+            { "internalType": "uint256", "name": "price", "type": "uint256" },
+            { "internalType": "string", "name": "hash", "type": "string" }
           ],
           "internalType": "struct FileStorageMarketplace.File[]",
           "name": "",
@@ -357,21 +256,9 @@
       "outputs": [
         {
           "components": [
-            {
-              "internalType": "uint256",
-              "name": "fileId",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "owner",
-              "type": "address"
-            },
-            {
-              "internalType": "string",
-              "name": "name",
-              "type": "string"
-            },
+            { "internalType": "uint256", "name": "fileId", "type": "uint256" },
+            { "internalType": "address", "name": "owner", "type": "address" },
+            { "internalType": "string", "name": "name", "type": "string" },
             {
               "internalType": "string",
               "name": "description",
@@ -382,21 +269,9 @@
               "name": "sharedWith",
               "type": "address"
             },
-            {
-              "internalType": "bool",
-              "name": "isForSale",
-              "type": "bool"
-            },
-            {
-              "internalType": "uint256",
-              "name": "price",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "hash",
-              "type": "string"
-            }
+            { "internalType": "bool", "name": "isForSale", "type": "bool" },
+            { "internalType": "uint256", "name": "price", "type": "uint256" },
+            { "internalType": "string", "name": "hash", "type": "string" }
           ],
           "internalType": "struct FileStorageMarketplace.File[]",
           "name": "",
@@ -412,21 +287,9 @@
       "outputs": [
         {
           "components": [
-            {
-              "internalType": "uint256",
-              "name": "fileId",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "owner",
-              "type": "address"
-            },
-            {
-              "internalType": "string",
-              "name": "name",
-              "type": "string"
-            },
+            { "internalType": "uint256", "name": "fileId", "type": "uint256" },
+            { "internalType": "address", "name": "owner", "type": "address" },
+            { "internalType": "string", "name": "name", "type": "string" },
             {
               "internalType": "string",
               "name": "description",
@@ -437,21 +300,9 @@
               "name": "sharedWith",
               "type": "address"
             },
-            {
-              "internalType": "bool",
-              "name": "isForSale",
-              "type": "bool"
-            },
-            {
-              "internalType": "uint256",
-              "name": "price",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "hash",
-              "type": "string"
-            }
+            { "internalType": "bool", "name": "isForSale", "type": "bool" },
+            { "internalType": "uint256", "name": "price", "type": "uint256" },
+            { "internalType": "string", "name": "hash", "type": "string" }
           ],
           "internalType": "struct FileStorageMarketplace.File[]",
           "name": "",
@@ -467,21 +318,9 @@
       "outputs": [
         {
           "components": [
-            {
-              "internalType": "uint256",
-              "name": "fileId",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "owner",
-              "type": "address"
-            },
-            {
-              "internalType": "string",
-              "name": "name",
-              "type": "string"
-            },
+            { "internalType": "uint256", "name": "fileId", "type": "uint256" },
+            { "internalType": "address", "name": "owner", "type": "address" },
+            { "internalType": "string", "name": "name", "type": "string" },
             {
               "internalType": "string",
               "name": "description",
@@ -492,21 +331,9 @@
               "name": "sharedWith",
               "type": "address"
             },
-            {
-              "internalType": "bool",
-              "name": "isForSale",
-              "type": "bool"
-            },
-            {
-              "internalType": "uint256",
-              "name": "price",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "hash",
-              "type": "string"
-            }
+            { "internalType": "bool", "name": "isForSale", "type": "bool" },
+            { "internalType": "uint256", "name": "price", "type": "uint256" },
+            { "internalType": "string", "name": "hash", "type": "string" }
           ],
           "internalType": "struct FileStorageMarketplace.File[]",
           "name": "",
@@ -519,13 +346,7 @@
     {
       "inputs": [],
       "name": "getContractOwnerAddress",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
+      "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
       "stateMutability": "view",
       "type": "function"
     },
@@ -535,21 +356,9 @@
       "outputs": [
         {
           "components": [
-            {
-              "internalType": "uint256",
-              "name": "fileId",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "owner",
-              "type": "address"
-            },
-            {
-              "internalType": "string",
-              "name": "name",
-              "type": "string"
-            },
+            { "internalType": "uint256", "name": "fileId", "type": "uint256" },
+            { "internalType": "address", "name": "owner", "type": "address" },
+            { "internalType": "string", "name": "name", "type": "string" },
             {
               "internalType": "string",
               "name": "description",
@@ -560,21 +369,9 @@
               "name": "sharedWith",
               "type": "address"
             },
-            {
-              "internalType": "bool",
-              "name": "isForSale",
-              "type": "bool"
-            },
-            {
-              "internalType": "uint256",
-              "name": "price",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "hash",
-              "type": "string"
-            }
+            { "internalType": "bool", "name": "isForSale", "type": "bool" },
+            { "internalType": "uint256", "name": "price", "type": "uint256" },
+            { "internalType": "string", "name": "hash", "type": "string" }
           ],
           "internalType": "struct FileStorageMarketplace.File[]",
           "name": "",
@@ -587,115 +384,50 @@
     {
       "inputs": [],
       "name": "getTotalFileCount",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
+      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
       "stateMutability": "view",
       "type": "function"
     },
     {
       "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_fileId",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_price",
-          "type": "uint256"
-        }
+        { "internalType": "uint256", "name": "_fileId", "type": "uint256" },
+        { "internalType": "uint256", "name": "_price", "type": "uint256" }
       ],
       "name": "setFileForSale",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
+      "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
       "stateMutability": "nonpayable",
       "type": "function"
     },
     {
       "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_fileId",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "_sharedWith",
-          "type": "address"
-        }
+        { "internalType": "uint256", "name": "_fileId", "type": "uint256" },
+        { "internalType": "address", "name": "_sharedWith", "type": "address" }
       ],
       "name": "shareFile",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
+      "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
       "stateMutability": "nonpayable",
       "type": "function"
     },
     {
       "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_fileId",
-          "type": "uint256"
-        }
+        { "internalType": "uint256", "name": "_fileId", "type": "uint256" }
       ],
       "name": "unshareFile",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
+      "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
       "stateMutability": "nonpayable",
       "type": "function"
     },
     {
       "inputs": [
-        {
-          "internalType": "string",
-          "name": "_name",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "_description",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "_hash",
-          "type": "string"
-        }
+        { "internalType": "string", "name": "_name", "type": "string" },
+        { "internalType": "string", "name": "_description", "type": "string" },
+        { "internalType": "string", "name": "_hash", "type": "string" }
       ],
       "name": "uploadFile",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
+      "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
       "stateMutability": "nonpayable",
       "type": "function"
     },
-    {
-      "stateMutability": "payable",
-      "type": "receive"
-    }
+    { "stateMutability": "payable", "type": "receive" }
   ]
 }
