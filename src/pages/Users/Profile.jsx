@@ -24,6 +24,7 @@ export default function Profile() {
 
   const [username, setUserName] = useState("");
   const [newEmail, setNewEmail] = useState("");
+  const [phone, setPhone] = useState();
 
   // function to signup user:
   const handleProfileUpdate = async () => {
@@ -35,6 +36,7 @@ export default function Profile() {
           username,
           newEmail,
           prevEmail,
+          phone,
         })
         .then((result) => {
           // toast.success("Nft created successfully");
@@ -61,8 +63,10 @@ export default function Profile() {
       );
 
       if (data) {
+        console.log("data: ", data);
         setNewEmail(data.email);
         setUserName(data.username);
+        setPhone(data.phone);
       } else {
         setNewEmail("");
         setUserName("");
@@ -122,6 +126,16 @@ export default function Profile() {
                 name="email"
                 value={newEmail}
                 onChange={(e) => setNewEmail(e.target.value)}
+              />
+            </FormControl>
+
+            <FormControl id="phone" isRequired>
+              <FormLabel>Phone Number</FormLabel>
+              <Input
+                type="number"
+                name="phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
               />
             </FormControl>
 

@@ -18,6 +18,8 @@ import { useAddress } from "@thirdweb-dev/react";
 import FileStorageMarketplace from "../../FileStorageMarketplace.json";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import axios from "axios";
+import JSEncrypt from "jsencrypt";
 
 const CardComponent = (props) => {
   const navigate = useNavigate();
@@ -71,6 +73,23 @@ const CardComponent = (props) => {
     localStorage.setItem("fileId", fileId);
   };
 
+  const handleLink = async (fileHash) => {
+    let encryptor = new JSEncrypt({ default_key_size: 2048 });
+    if (fileOwner == account) {
+      const { data } = await axios.post(
+        "https://wild-blue-barnacle-sock.cyclic.app/api/hash/getPrivateKey",
+        {
+          hashvalue: fileHash,
+        }
+      );
+
+      encryptor.setPrivateKey(data.privateKey);
+      let decrypted = encryptor.decrypt(fileHash);
+      window.open(`https://gateway.pinata.cloud/ipfs/${decrypted}`, "_blank");
+    } else {
+      window.open(`https://gateway.pinata.cloud/ipfs/${fileHash}`, "_blank");
+    }
+  };
   return (
     <Card>
       <CardHeader
@@ -134,7 +153,8 @@ const CardComponent = (props) => {
           <Link
             fontWeight="light"
             fontSize="md"
-            href={`https://gateway.pinata.cloud/ipfs/${fileHash}`}
+            onClick={() => handleLink(fileHash)}
+            // href={`https://gateway.pinata.cloud/ipfs/${fileHash}`}
             isExternal
           >
             {fileHash.slice(0, 15) + "..." + fileHash.slice(-5)}{" "}
