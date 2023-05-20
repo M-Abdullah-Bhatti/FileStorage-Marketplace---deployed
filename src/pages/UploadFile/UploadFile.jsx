@@ -90,10 +90,13 @@ export default function UploadFile() {
       );
       await tx.wait();
 
+      console.log({ encryptedHash });
+
       const createFile = await axios
         .post("https://wild-blue-barnacle-sock.cyclic.app/api/hash/create", {
           hashvalue: encryptedHash,
           privatekey: privatekey,
+          publicKey: publicKey,
           name: fileInfo.name,
           description: fileInfo.description,
         })

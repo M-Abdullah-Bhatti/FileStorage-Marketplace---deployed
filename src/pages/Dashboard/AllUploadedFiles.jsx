@@ -120,6 +120,7 @@ const AllUploadedFiles = () => {
           return {
             ...element,
             privateKey: data.privateKey,
+            publicKey: data.publicKey,
           };
         })
       );
@@ -182,6 +183,7 @@ const AllUploadedFiles = () => {
                 </Th>
                 <Th fontSize="xl">File Hash</Th>
                 <Th fontSize="xl">Private Key</Th>
+                <Th fontSize="xl">Public Key</Th>
                 <Th fontSize="xl">File Price</Th>
                 <Th fontSize="xl">Action</Th>
               </Tr>
@@ -224,6 +226,15 @@ const AllUploadedFiles = () => {
                       <Td>
                         {data.privateKey.slice(33, 60) + "..."}
                         <button onClick={() => handleCopy(data.privateKey)}>
+                          <BsFillClipboardFill style={{ fontSize: "20px" }} />
+                        </button>
+                      </Td>
+
+                      {/* publicKey */}
+
+                      <Td>
+                        {data.publicKey.slice(33, 60) + "..."}
+                        <button onClick={() => handleCopy(data.publicKey)}>
                           <BsFillClipboardFill style={{ fontSize: "20px" }} />
                         </button>
                       </Td>
