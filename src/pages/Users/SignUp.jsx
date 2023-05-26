@@ -30,6 +30,11 @@ export default function Signup() {
   // function to signup user:
   const handleSignupSubmit = async () => {
     try {
+      if (phone && phone.length > 13) {
+        toast.error("Phone number should not exceed 13 digits");
+        return;
+      }
+
       await axios
         .post("https://wild-blue-barnacle-sock.cyclic.app/api/user/signup", {
           username,
@@ -38,14 +43,9 @@ export default function Signup() {
           password,
         })
         .then((result) => {
-          // toast.success("Nft created successfully");
           toast.success("user register successfully");
           navigate("/login");
-          // setTimeout(() => {
-          //   window.location.reload(true);
-          // }, "2000");
         })
-
         .catch((error) => toast.error(error.response.data.message));
     } catch (error) {
       console.log("catch error: ", error.message);

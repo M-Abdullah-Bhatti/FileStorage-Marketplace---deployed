@@ -24,7 +24,12 @@ export default function SetFileForSaleModal(props) {
 
   const handleSetFileForSale = async () => {
     try {
-      console.log("fileId: ", Number(fileId));
+      console.log(
+        "fileId: ",
+        Number(fileId),
+        " and set file for sale modal called"
+      );
+
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(

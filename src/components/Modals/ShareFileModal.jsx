@@ -24,7 +24,7 @@ export default function ShareFileModal(props) {
 
   const handleShareFile = async () => {
     try {
-      console.log(Number(fileId));
+      console.log("fileId: ", Number(fileId), " share file modal called");
 
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
@@ -35,6 +35,7 @@ export default function ShareFileModal(props) {
       );
 
       const tx = await contract.shareFile(fileId, sharedAddress);
+
       onClose();
 
       await tx.wait();
@@ -43,7 +44,7 @@ export default function ShareFileModal(props) {
         navigate("/myallsharedfiles");
       }, 3000);
     } catch (error) {
-      toast.error(error.message.ed);
+      toast.error("error occured!!!");
     }
   };
 

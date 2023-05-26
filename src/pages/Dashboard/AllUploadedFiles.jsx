@@ -17,6 +17,8 @@ import {
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import FileStorageMarketplace from "../../FileStorageMarketplace.json";
 import SetFileForSaleModal from "../../components/Modals/SetFileForSaleModal";
+import ShareFileModal from "../../components/Modals/ShareFileModal";
+
 import { ethers } from "ethers";
 import JSEncrypt from "jsencrypt";
 import Pagination from "../../components/Pagination/Pagination";
@@ -53,11 +55,24 @@ const AllUploadedFiles = () => {
   const [fileContent, setFileContent] = useState("");
   const [fileId, setFileId] = useState(false);
 
-  const handleClick = async (fileId) => {
+  const [isSetFileForSaleModalOpen, setIsSetFileForSaleModalOpen] =
+    useState(false);
+  const [isShareFileModalOpen, setIsShareFileModalOpen] = useState(false);
+
+  const handleFileForSale = async (fileId) => {
     console.log(Number(fileId));
     // openModal();
     setFileId(fileId);
-    onOpen();
+    // onOpen();
+    setIsSetFileForSaleModalOpen(true);
+  };
+
+  const handleShareFile = async (fileId) => {
+    console.log(Number(fileId));
+    // openModal();
+    setFileId(fileId);
+    // onOpen();
+    setIsShareFileModalOpen(true);
   };
 
   const handleCopy = async (privateKey) => {
@@ -198,10 +213,31 @@ const AllUploadedFiles = () => {
               ) : (
                 currentItems.map((data, i) => (
                   <>
-                    <SetFileForSaleModal
+                    {/* <SetFileForSaleModal
                       isOpen={isOpen}
                       onOpen={onOpen}
                       onClose={onClose}
+                      fileId={fileId}
+                    />
+
+                    <ShareFileModal
+                      isOpen={isOpen}
+                      onOpen={onOpen}
+                      onClose={onClose}
+                      fileId={fileId}
+                    /> */}
+
+                    <SetFileForSaleModal
+                      isOpen={isSetFileForSaleModalOpen}
+                      onOpen={() => setIsSetFileForSaleModalOpen(true)}
+                      onClose={() => setIsSetFileForSaleModalOpen(false)}
+                      fileId={fileId}
+                    />
+
+                    <ShareFileModal
+                      isOpen={isShareFileModalOpen}
+                      onOpen={() => setIsShareFileModalOpen(true)}
+                      onClose={() => setIsShareFileModalOpen(false)}
                       fileId={fileId}
                     />
 
@@ -243,7 +279,21 @@ const AllUploadedFiles = () => {
                       <Td>
                         <Button
                           // onClick={onOpen}
-                          onClick={() => handleClick(data.fileId)}
+                          onClick={() => handleShareFile(data.fileId)}
+                          colorScheme="teal"
+                          backgroundColor="#009999"
+                          size="lg"
+                          marginX={"10px"}
+                          _hover={{
+                            backgroundColor: "acqua",
+                          }}
+                        >
+                          Share File
+                        </Button>
+
+                        <Button
+                          // onClick={onOpen}
+                          onClick={() => handleFileForSale(data.fileId)}
                           colorScheme="teal"
                           backgroundColor="black"
                           size="lg"
