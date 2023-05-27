@@ -22,22 +22,22 @@ export default function DeleteFileModal(props) {
 
   const handleFileDelete = async () => {
     try {
-      console.log("fileId: ", Number(fileId), " delete file modal called");
+      // console.log("fileId: ", Number(fileId), " delete file modal called");
 
-      // const provider = new ethers.providers.Web3Provider(window.ethereum);
-      // const signer = provider.getSigner();
-      // const contract = new ethers.Contract(
-      //   FileStorageMarketplace.address,
-      //   FileStorageMarketplace.abi,
-      //   signer
-      // );
-      // const tx = await contract.deleteFile(fileId);
-      // onClose();
-      // await tx.wait();
-      // toast.success("File Deleted Successfully");
-      // setTimeout(() => {
-      //   navigate("/myallunsharedfiles");
-      // }, 3000);
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(
+        FileStorageMarketplace.address,
+        FileStorageMarketplace.abi,
+        signer
+      );
+      const tx = await contract.deleteFile(fileId);
+      onClose();
+      await tx.wait();
+      toast.success("File Deleted Successfully");
+      setTimeout(() => {
+        navigate("/myallunsharedfiles");
+      }, 3000);
     } catch (error) {
       toast.error(error.message.ed);
     }

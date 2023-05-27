@@ -24,31 +24,31 @@ export default function SetFileForSaleModal(props) {
 
   const handleSetFileForSale = async () => {
     try {
-      console.log(
-        "fileId: ",
-        Number(fileId),
-        " and set file for sale modal called"
+      // console.log(
+      //   "fileId: ",
+      //   Number(fileId),
+      //   " and set file for sale modal called"
+      // );
+
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(
+        FileStorageMarketplace.address,
+        FileStorageMarketplace.abi,
+        signer
       );
 
-      // const provider = new ethers.providers.Web3Provider(window.ethereum);
-      // const signer = provider.getSigner();
-      // const contract = new ethers.Contract(
-      //   FileStorageMarketplace.address,
-      //   FileStorageMarketplace.abi,
-      //   signer
-      // );
+      const tx = await contract.setFileForSale(
+        fileId,
+        ethers.utils.parseEther(price)
+      );
+      onClose();
 
-      // const tx = await contract.setFileForSale(
-      //   fileId,
-      //   ethers.utils.parseEther(price)
-      // );
-      // onClose();
-
-      // await tx.wait();
-      // toast.success("Price Set Successfully");
-      // setTimeout(() => {
-      //   navigate("/filesforsale");
-      // }, 3000);
+      await tx.wait();
+      toast.success("Price Set Successfully");
+      setTimeout(() => {
+        navigate("/filesforsale");
+      }, 3000);
     } catch (error) {
       toast.error(error.message.ed);
     }

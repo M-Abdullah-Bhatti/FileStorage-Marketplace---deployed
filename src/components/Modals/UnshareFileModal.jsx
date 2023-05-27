@@ -22,25 +22,25 @@ export default function UnshareFileModal(props) {
 
   const handleUnshareFile = async () => {
     try {
-      console.log("fileId: ", Number(fileId), " unshare file modal called");
+      // console.log("fileId: ", Number(fileId), " unshare file modal called");
 
-      // console.log(Number(fileId));
-      // const provider = new ethers.providers.Web3Provider(window.ethereum);
-      // const signer = provider.getSigner();
-      // const contract = new ethers.Contract(
-      //   FileStorageMarketplace.address,
-      //   FileStorageMarketplace.abi,
-      //   signer
-      // );
+      console.log(Number(fileId));
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(
+        FileStorageMarketplace.address,
+        FileStorageMarketplace.abi,
+        signer
+      );
 
-      // const tx = await contract.unshareFile(fileId);
-      // onClose();
+      const tx = await contract.unshareFile(fileId);
+      onClose();
 
-      // await tx.wait();
-      // toast.success("File Unshared Successfully");
-      // setTimeout(() => {
-      //   navigate("/");
-      // }, 3000);
+      await tx.wait();
+      toast.success("File Unshared Successfully");
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
     } catch (error) {
       toast.error(error.message.ed);
     }
