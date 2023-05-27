@@ -26,23 +26,23 @@ export default function ShareFileModal(props) {
     try {
       console.log("fileId: ", Number(fileId), " share file modal called");
 
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
-      const contract = new ethers.Contract(
-        FileStorageMarketplace.address,
-        FileStorageMarketplace.abi,
-        signer
-      );
+      // const provider = new ethers.providers.Web3Provider(window.ethereum);
+      // const signer = provider.getSigner();
+      // const contract = new ethers.Contract(
+      //   FileStorageMarketplace.address,
+      //   FileStorageMarketplace.abi,
+      //   signer
+      // );
 
-      const tx = await contract.shareFile(fileId, sharedAddress);
+      // const tx = await contract.shareFile(fileId, sharedAddress);
 
-      onClose();
+      // onClose();
 
-      await tx.wait();
-      toast.success("File Shared Successfully");
-      setTimeout(() => {
-        navigate("/myallsharedfiles");
-      }, 3000);
+      // await tx.wait();
+      // toast.success("File Shared Successfully");
+      // setTimeout(() => {
+      //   navigate("/myallsharedfiles");
+      // }, 3000);
     } catch (error) {
       toast.error("error occured!!!");
     }

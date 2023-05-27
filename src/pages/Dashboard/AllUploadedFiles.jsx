@@ -279,20 +279,6 @@ const AllUploadedFiles = () => {
                       <Td>
                         <Button
                           // onClick={onOpen}
-                          onClick={() => handleShareFile(data.fileId)}
-                          colorScheme="teal"
-                          backgroundColor="#009999"
-                          size="lg"
-                          marginX={"10px"}
-                          _hover={{
-                            backgroundColor: "acqua",
-                          }}
-                        >
-                          Share File
-                        </Button>
-
-                        <Button
-                          // onClick={onOpen}
                           onClick={() => handleFileForSale(data.fileId)}
                           colorScheme="teal"
                           backgroundColor="black"

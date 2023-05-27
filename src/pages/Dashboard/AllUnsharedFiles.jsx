@@ -20,6 +20,7 @@ import { ethers } from "ethers";
 import JSEncrypt from "jsencrypt";
 import Pagination from "../../components/Pagination/Pagination";
 import Loader from "../../components/Loader/Loader";
+import ShareFileModal from "../../components/Modals/ShareFileModal";
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -41,9 +42,28 @@ const AllUnsharedFiles = () => {
 
   const [fileId, setFileId] = useState(false);
 
-  const handleClick = async (fileId) => {
+  const [isDeleteFileModalOpen, setIsDeleteFileModalOpen] = useState(false);
+  const [isShareFileModalOpen, setIsShareFileModalOpen] = useState(false);
+
+  // const handleClick = async (fileId) => {
+  //   setFileId(fileId);
+  //   onOpen();
+  // };
+
+  const handleDeleteFile = async (fileId) => {
+    console.log(Number(fileId));
+    // openModal();
     setFileId(fileId);
-    onOpen();
+    // onOpen();
+    setIsDeleteFileModalOpen(true);
+  };
+
+  const handleShareFile = async (fileId) => {
+    console.log(Number(fileId));
+    // openModal();
+    setFileId(fileId);
+    // onOpen();
+    setIsShareFileModalOpen(true);
   };
 
   const click = async (hash) => {
@@ -148,12 +168,27 @@ const AllUnsharedFiles = () => {
                 ) : (
                   currentItems.map((data, i) => (
                     <>
-                      <DeleteFileModal
+                      {/* <DeleteFileModal
                         isOpen={isOpen}
                         onOpen={onOpen}
                         onClose={onClose}
                         fileId={fileId}
+                      /> */}
+
+                      <DeleteFileModal
+                        isOpen={isDeleteFileModalOpen}
+                        onOpen={() => setIsDeleteFileModalOpen(true)}
+                        onClose={() => setIsDeleteFileModalOpen(false)}
+                        fileId={fileId}
                       />
+
+                      <ShareFileModal
+                        isOpen={isShareFileModalOpen}
+                        onOpen={() => setIsShareFileModalOpen(true)}
+                        onClose={() => setIsShareFileModalOpen(false)}
+                        fileId={fileId}
+                      />
+
                       <Tr key={i}>
                         <Td>{data.name}</Td>
                         <Td>
@@ -173,7 +208,20 @@ const AllUnsharedFiles = () => {
                         <Td>{`${ethers.utils.formatEther(data.price)} ETH`}</Td>
                         <Td>
                           <Button
-                            onClick={() => handleClick(data.fileId)}
+                            // onClick={onOpen}
+                            onClick={() => handleShareFile(data.fileId)}
+                            colorScheme="teal"
+                            backgroundColor="#009999"
+                            size="lg"
+                            marginX={"10px"}
+                            _hover={{
+                              backgroundColor: "acqua",
+                            }}
+                          >
+                            Share File
+                          </Button>
+                          <Button
+                            onClick={() => handleDeleteFile(data.fileId)}
                             colorScheme="red"
                             size="lg"
                             _hover={{
