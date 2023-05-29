@@ -56,7 +56,7 @@ export default function UnshareFileModal(props) {
         <AlertDialogOverlay>
           <AlertDialogContent>
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              Delete File
+              Unshare File
             </AlertDialogHeader>
 
             <AlertDialogBody>
